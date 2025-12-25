@@ -1,4 +1,5 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ringostarr80_rust-tibber-shelly-bridge&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ringostarr80_rust-tibber-shelly-bridge)
+[![Rust](https://github.com/ringostarr80/rust-tibber-shelly-bridge/actions/workflows/rust.yml/badge.svg)](https://github.com/ringostarr80/rust-tibber-shelly-bridge/actions/workflows/rust.yml)
 
 # rust-tibber-shelly-bridge
 
