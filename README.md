@@ -1,3 +1,5 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ringostarr80_rust-tibber-shelly-bridge&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ringostarr80_rust-tibber-shelly-bridge)
+
 # rust-tibber-shelly-bridge
 
 ## What does it do?
