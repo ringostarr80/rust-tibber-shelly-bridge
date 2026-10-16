@@ -12,7 +12,11 @@ impl ShellyClient {
         Self {
             api_token,
             api_url,
-            client: reqwest::Client::new(),
+            // The API token is part of the URL, so never send it unencrypted
+            client: reqwest::Client::builder()
+                .https_only(true)
+                .build()
+                .expect("failed to build HTTP client"),
         }
     }
 
@@ -21,13 +25,14 @@ impl ShellyClient {
 
         let request_body = ShellyRequest { price };
 
-        let response = self.client.post(&url).json(&request_body).send().await?;
-
-        if !response.status().is_success() {
-            return Err(ShellyError::RequestFailed(reqwest::Error::from(
-                response.error_for_status().unwrap_err(),
-            )));
-        }
+        // Strip the URL from errors so the API token does not end up in logs
+        self.client
+            .post(&url)
+            .json(&request_body)
+            .send()
+            .await
+            .and_then(reqwest::Response::error_for_status)
+            .map_err(reqwest::Error::without_url)?;
 
         Ok(())
     }
